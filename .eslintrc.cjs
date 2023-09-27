@@ -1,20 +1,52 @@
 module.exports = {
-  root: true,
-  env: { browser: true, es2020: true },
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
+  },
   extends: [
-    'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
+    'airbnb',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
+  overrides: [
+  ],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  plugins: [
+    'react',
+  ],
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/no-array-index-key': 'off',
+    'linebreak-style': 'off',
+    'max-len': 'off',
+    'react/prop-types': 'off',
+    'import/no-extraneous-dependencies': ['error',
+      {
+        devDependencies: true,
+        optionalDependencies: false,
+        peerDependencies: false,
+      }],
+
+    // configuration absolute important eslint airbnb
+    'import/no-unresolved': [
+      'error',
+      {
+        ignore: ['^@/'],
+      },
+    ],
+
+    'import/extensions': [
+      'error',
+      'never',
+      {
+        json: 'always',
+        js: 'never',
+        jsx: 'never',
+      },
     ],
   },
-}
+};
