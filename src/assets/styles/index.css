@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: 'PT Sans', sans-serif;
+    background: #D2E9E9;
+}
+
+.shadow-for-cards {
+    box-shadow: 1.5px 1.5px 20px 0px rgba(0, 0, 0, 0.05);
+}
