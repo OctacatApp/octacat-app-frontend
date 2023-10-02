@@ -17,6 +17,13 @@ export default {
       'placeholder-color': '#606060',
       'text-color': '#F3F3F3',
     },
+    backgroundColor: {
+      transparent: 'transparent',
+      'secondary-color': '#E3F4F4',
+      'primary-color': '#F8F6F4',
+      'active-color': '#71A8A8',
+      'thirdy-color': '#87B5B5',
+    },
   },
   plugins: [],
 };
