@@ -4,11 +4,14 @@ import { MdOutlineLock } from 'react-icons/md';
 import { AiOutlineEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import AuthenticationLayout from '@/layout/AuthenticationLayout';
+import useLogin from '@/hooks/useLogin';
 
 export default function Login() {
+  const { register, handleSubmit: onLogin } = useLogin();
+
   return (
     <AuthenticationLayout>
-      <form className="flex flex-col gap-12 xl:py-36">
+      <form className="flex flex-col gap-12 xl:py-36" onSubmit={onLogin}>
         <div className="flex flex-col gap-3 text-center">
           <h1 className="m-0 xl:text-[32px] font-bold text-head-text">Save you account now</h1>
           <p className="m-0 text-sub-text xl:text-xl xl:max-w-md xl:mx-auto">Get unlimited typeforms, questions and responses, free forever</p>
@@ -21,6 +24,7 @@ export default function Login() {
                 type="text"
                 className="border-2 border-border-color text-lg placeholder:text-border-color rounded-md p-2.5 pl-10 bg-transparent w-full"
                 placeholder="Email or username"
+                {...register('email')}
               />
 
               <div className="absolute left-3 top-3.5">
@@ -35,6 +39,7 @@ export default function Login() {
                 type="password"
                 className="border-2 border-border-color text-lg placeholder:text-border-color rounded-md p-2.5 pl-10 bg-transparent w-full"
                 placeholder="Password"
+                {...register('password')}
               />
 
               <div className="absolute left-3 top-3.5">
@@ -54,13 +59,13 @@ export default function Login() {
                 <span className="text-lg font-normal text-border-color">Remember me</span>
               </label>
 
-              <Link to="/forgot-password" className="text-lg text-thirdy-color">Forgot password</Link>
+              <Link to="/forgot-password" className="text-lg font-bold text-thirdy-color">Forgot password</Link>
             </div>
           </div>
 
           <div className="flex flex-col gap-4">
             <div className="flex flex-row justify-center">
-              <button type="button" className="xl:w-[550px] uppercase text-lg bg-active-color text-text-color p-3 rounded-lg font-bold">login</button>
+              <button type="submit" className="xl:w-[550px] uppercase text-lg bg-active-color text-text-color p-3 rounded-lg font-bold">login</button>
             </div>
 
             <div className="flex flex-row justify-center">

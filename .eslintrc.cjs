@@ -18,6 +18,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    'import/prefer-default-export': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/no-array-index-key': 'off',
