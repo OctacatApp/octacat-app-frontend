@@ -7,7 +7,7 @@ export const useUrqlClientContext = () => useContext(UrqlContextClient);
 
 export default function UrqlContext({ children }) {
   const client = useMemo(() => new Client({
-    url: 'https://octacat-app-backend.fly.dev/',
+    url: 'https://octacat-app-backend.fly.dev/query',
     exchanges: [
       cacheExchange,
       fetchExchange,

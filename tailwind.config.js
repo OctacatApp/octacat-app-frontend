@@ -16,6 +16,9 @@ export default {
       'border-color': '#AEACAB',
       'placeholder-color': '#606060',
       'text-color': '#F3F3F3',
+      red: '#E54D4D',
+      'red-100': '#FFE0E0',
+      'text-input': '#363636',
     },
     backgroundColor: {
       transparent: 'transparent',
@@ -23,6 +26,8 @@ export default {
       'primary-color': '#F8F6F4',
       'active-color': '#71A8A8',
       'thirdy-color': '#87B5B5',
+      red: '#E54D4D',
+      'red-100': '#FFE0E0',
     },
   },
   plugins: [],
