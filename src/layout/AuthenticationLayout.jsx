@@ -10,7 +10,7 @@ export default function AuthenticationLayout({ children }) {
       <div className="p-10 bg-primary-color shadow-for-cards relative rounded-[20px]">
         <div className="grid grid-cols-6">
           <div className="flex items-center col-span-3">
-            <img src="/src/assets/images/login-cloud.svg" alt="cloud-icons" className="h-full bg-cover xl:w-[450px] xl:ml-16" />
+            <img src="/images/login-cloud.svg" alt="cloud-icons" className="h-full bg-cover xl:w-[450px] xl:ml-16" />
           </div>
           <div className="col-span-3">
             {children}
