@@ -3,7 +3,7 @@ import { BiMoon } from 'react-icons/bi';
 
 export default function AuthenticationLayout({ children }) {
   return (
-    <section className="relative flex h-screen p-10 overflow-hidden xl:block sm:items-center sm:justify-center xl:px-56 xl:py-24">
+    <section className="relative flex items-center justify-center h-screen p-10 overflow-hidden xl:block xl:px-56 xl:py-24">
       <div className="absolute hidden w-10 h-10 p-2 rounded-full bg-secondary-color top-10 xl:block" />
       <div className="absolute hidden p-2 rounded-full w-14 h-14 bg-secondary-color top-16 xl:block" />
 
