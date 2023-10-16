@@ -3,13 +3,13 @@ import { BiMoon } from 'react-icons/bi';
 
 export default function AuthenticationLayout({ children }) {
   return (
-    <section className="relative h-screen overflow-hidden xl:px-56 xl:py-24">
-      <div className="absolute w-10 h-10 p-2 rounded-full bg-secondary-color top-10" />
-      <div className="absolute p-2 rounded-full w-14 h-14 bg-secondary-color top-16" />
+    <section className="relative flex h-screen p-10 overflow-hidden xl:block sm:items-center sm:justify-center xl:px-56 xl:py-24">
+      <div className="absolute hidden w-10 h-10 p-2 rounded-full bg-secondary-color top-10 xl:block" />
+      <div className="absolute hidden p-2 rounded-full w-14 h-14 bg-secondary-color top-16 xl:block" />
 
-      <div className="p-10 bg-primary-color shadow-for-cards relative rounded-[20px]">
-        <div className="grid grid-cols-6">
-          <div className="flex items-center col-span-3">
+      <div className="p-16 xl:p-10 bg-primary-color shadow-for-cards relative rounded-[20px]">
+        <div className="grid grid-cols-1 xl:grid-cols-6">
+          <div className="hidden xl:flex xl:items-center xl:col-span-3">
             <img src="/images/login-cloud.svg" alt="cloud-icons" className="h-full bg-cover xl:w-[450px] xl:ml-16" />
           </div>
           <div className="col-span-3">
@@ -17,8 +17,8 @@ export default function AuthenticationLayout({ children }) {
           </div>
         </div>
 
-        <div className="absolute xl:top-6 xl:right-6">
-          <BiMoon className="xl:text-4xl text-active-color" />
+        <div className="absolute top-6 right-6 xl:top-6 xl:right-6">
+          <BiMoon className="text-3xl xl:text-4xl text-active-color" />
         </div>
       </div>
     </section>

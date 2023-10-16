@@ -1,29 +1,36 @@
 import { Route, Routes } from 'react-router-dom';
-import Login from '@/pages/Login';
-import Register from '@/pages/Register';
-import Dashboard from '@/pages/Dashboard';
-import Chat from '@/pages/Chat';
-import ForgotPassword from '@/pages/ForgotPassword';
-import ChangePassword from '@/pages/ChangePassword';
+import { Suspense, lazy } from 'react';
+import Loaders from '@/components/common/Loaders';
+
+const Login = lazy(() => import('@/pages/Login'));
+const Register = lazy(() => import('@/pages/Register'));
+const Dashboard = lazy(() => import('@/pages/Dashboard'));
+const Chat = lazy(() => import('@/pages/Chat'));
+const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'));
+const ChangePassword = lazy(() => import('@/pages/ChangePassword'));
+const Page404 = lazy(() => import('@/pages/Page404'));
 
 const pagesRoutes = [
   {
-    id: 1, path: '/', element: <Login />, requireAuth: false,
+    path: '/', element: <Login />, requireAuth: false,
   },
   {
-    id: 2, path: '/register', element: <Register />, requireAuth: false,
+    path: '/register', element: <Register />, requireAuth: false,
   },
   {
-    id: 5, path: '/forgot-password', element: <ForgotPassword />, requireAuth: false,
+    path: '/forgot-password', element: <ForgotPassword />, requireAuth: false,
   },
   {
-    id: 6, path: '/change-password', element: <ChangePassword />, requireAuth: false,
+    path: '/change-password', element: <ChangePassword />, requireAuth: false,
   },
   {
-    id: 3, path: '/dashboard', element: <Dashboard />, requireAuth: true,
+    path: '/dashboard', element: <Dashboard />, requireAuth: true,
   },
   {
-    id: 4, path: '/chat', element: <Chat />, requireAuth: true,
+    path: '/chat', element: <Chat />, requireAuth: true,
+  },
+  {
+    path: '/*', element: <Page404 />, requireAuth: false,
   },
 ];
 
@@ -32,12 +39,37 @@ export default function Routers() {
     <Routes>
       {
             pagesRoutes?.map((pages) => {
-              if (pages.requireAuth) return <Route path={pages?.path} element={pages?.element} key={pages?.id} />;
-              return <Route path={pages?.path} element={pages?.element} key={pages?.id} />;
+              if (pages.requireAuth) {
+                return (
+                  <Route
+                    path={pages?.path}
+                    element={(
+                      <Suspense fallback={(
+                        <div className="flex items-center justify-center w-full h-screen">
+                          <Loaders />
+                        </div>
+                      )}
+                      >
+                        {pages?.element}
+                      </Suspense>
+                    )}
+                    key={pages?.path}
+                  />
+                );
+              }
+              return (
+                <Route
+                  path={pages?.path}
+                  element={(
+                    <Suspense fallback={<div className="flex items-center justify-center w-full h-screen"><Loaders /></div>}>
+                      {pages?.element}
+                    </Suspense>
+              )}
+                  key={pages?.path}
+                />
+              );
             })
         }
-
-      <Route path="*" element={<div>pages tidak ada</div>} />
     </Routes>
   );
 }
