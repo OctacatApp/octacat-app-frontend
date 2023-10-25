@@ -11,7 +11,7 @@ import Title from '@/components/auth/Title';
 
 export default function Register() {
   const {
-    register, handleSubmit: onRegister, mutationResponseError: error, visible, setVisible,
+    register, handleSubmit: onRegister, mutationResponse, mutationResponseError: error, visible, setVisible,
   } = useRegister();
 
   return (
@@ -23,6 +23,11 @@ export default function Register() {
           {error && (
           <Aosanimate className="mx-auto xl:w-[550px] w-full">
             <span className="p-2 text-base bg-red-100 border-l-4 border-red text-active-color">{error.message}</span>
+          </Aosanimate>
+          )}
+          {mutationResponse && (
+          <Aosanimate className="mx-auto xl:w-[550px] w-full">
+            <span className="p-2 text-base border-l-4 bg-success-color border-border-success-color text-active-color">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, voluptates!</span>
           </Aosanimate>
           )}
 

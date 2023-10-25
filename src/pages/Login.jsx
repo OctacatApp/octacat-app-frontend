@@ -10,7 +10,7 @@ import Title from '@/components/auth/Title';
 
 export default function Login() {
   const {
-    register, handleSubmit: onLogin, visible, setVisible, mutationResponseError: error,
+    register, handleSubmit: onLogin, visible, setVisible, mutationResponse, mutationResponseError: error,
   } = useLogin();
 
   return (
@@ -22,6 +22,12 @@ export default function Login() {
           {error && (
           <Aosanimate className="mx-auto xl:w-[550px]">
             <span className="p-2 text-base bg-red-100 border-l-4 border-red text-active-color">{error.message}</span>
+          </Aosanimate>
+          )}
+
+          {mutationResponse && (
+          <Aosanimate className="mx-auto xl:w-[550px]">
+            <span className="p-2 text-base border-l-4 bg-success-color border-border-success-color text-active-color">{mutationResponse?.auth?.login?.message.slice(0, 71)}</span>
           </Aosanimate>
           )}
 

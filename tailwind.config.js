@@ -19,6 +19,8 @@ export default {
       red: '#E54D4D',
       'red-100': '#FFE0E0',
       'text-input': '#363636',
+      'success-color': '#E0FFF0',
+      'border-success-color': '#4DE5AE',
     },
     backgroundColor: {
       transparent: 'transparent',
@@ -28,6 +30,8 @@ export default {
       'thirdy-color': '#87B5B5',
       red: '#E54D4D',
       'red-100': '#FFE0E0',
+      'success-color': '#E0FFF0',
+      'border-success-color': '#4DE5AE',
     },
   },
   plugins: [],
