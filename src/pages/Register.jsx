@@ -6,12 +6,11 @@ import { FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import AuthenticationLayout from '@/layout/AuthenticationLayout';
 import useRegister from '@/hooks/useRegister';
-import Aosanimate from '@/components/common/Aosanimate';
 import Title from '@/components/auth/Title';
 
 export default function Register() {
   const {
-    register, handleSubmit: onRegister, mutationResponse, mutationResponseError: error, visible, setVisible,
+    register, handleSubmit: onRegister, error, visible, setVisible, result, fetching,
   } = useRegister();
 
   return (
@@ -21,14 +20,10 @@ export default function Register() {
 
         <div className="relative flex flex-col gap-5">
           {error && (
-          <Aosanimate className="mx-auto xl:w-[550px] w-full">
-            <span className="p-2 text-base bg-red-100 border-l-4 border-red text-active-color">{error.message}</span>
-          </Aosanimate>
+            <span className="p-2 text-base mx-auto xl:w-[550px] bg-red-100 border-l-4 border-red text-active-color">{error.message}</span>
           )}
-          {mutationResponse && (
-          <Aosanimate className="mx-auto xl:w-[550px] w-full">
-            <span className="p-2 text-base border-l-4 bg-success-color border-border-success-color text-active-color">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, voluptates!</span>
-          </Aosanimate>
+          {result?.data && (
+            <span className="p-2 text-base mx-auto xl:w-[550px] border-l-4 bg-success-color border-border-success-color text-active-color">Create account success</span>
           )}
 
           <div className="flex flex-row justify-center">
@@ -49,7 +44,7 @@ export default function Register() {
           <div className="flex flex-row justify-center">
             <div className="relative xl:w-[550px] w-full">
               <input
-                type="text"
+                type="email"
                 className="border-2 border-border-color transition-all delay-500 ease-in-out text-lg focus:outline-active-color placeholder:text-border-color text-text-input rounded-md p-2.5 pl-10 bg-transparent w-full"
                 placeholder="Email"
                 {...register('email')}
@@ -82,7 +77,9 @@ export default function Register() {
 
           <div className="flex flex-col gap-4">
             <div className="flex flex-row justify-center">
-              <button type="submit" className="xl:w-[550px] w-full hover:bg-[#547D7D] transition duration-300 ease-in-out delay-300 hover:-translate-y-1 uppercase text-lg bg-active-color text-text-color p-3 rounded-lg font-bold">create account</button>
+              <button type="submit" className="xl:w-[550px] w-full hover:bg-[#547D7D] transition duration-300 ease-in-out delay-300 hover:-translate-y-1 uppercase text-lg bg-active-color text-text-color p-3 rounded-lg font-bold">
+                {fetching ? 'loading ...' : 'create account'}
+              </button>
             </div>
 
             <div className="flex flex-row justify-center">

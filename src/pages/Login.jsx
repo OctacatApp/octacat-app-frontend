@@ -2,15 +2,17 @@ import React from 'react';
 import { HiOutlineMail } from 'react-icons/hi';
 import { MdOutlineLock } from 'react-icons/md';
 import { AiOutlineEye } from 'react-icons/ai';
+
 import { Link } from 'react-router-dom';
+
 import AuthenticationLayout from '@/layout/AuthenticationLayout';
-import useLogin from '@/hooks/useLogin';
-import Aosanimate from '@/components/common/Aosanimate';
 import Title from '@/components/auth/Title';
+
+import useLogin from '@/hooks/useLogin';
 
 export default function Login() {
   const {
-    register, handleSubmit: onLogin, visible, setVisible, mutationResponse, mutationResponseError: error,
+    register, fetching, error, handleSubmit: onLogin, visible, setVisible, result,
   } = useLogin();
 
   return (
@@ -20,21 +22,17 @@ export default function Login() {
 
         <div className="flex flex-col gap-5">
           {error && (
-          <Aosanimate className="mx-auto xl:w-[550px]">
-            <span className="p-2 text-base bg-red-100 border-l-4 border-red text-active-color">{error.message}</span>
-          </Aosanimate>
+            <span className="p-2 text-base mx-auto xl:w-[550px] capitalize bg-red-100 border-l-4 border-red text-active-color">user with this email not registered</span>
           )}
 
-          {mutationResponse && (
-          <Aosanimate className="mx-auto xl:w-[550px]">
-            <span className="p-2 text-base border-l-4 bg-success-color border-border-success-color text-active-color">{mutationResponse?.auth?.login?.message.slice(0, 71)}</span>
-          </Aosanimate>
+          {result?.data && (
+            <span className="p-2 text-base mx-auto xl:w-[550px] border-l-4 bg-success-color border-border-success-color text-active-color">Sign success</span>
           )}
 
           <div className="flex flex-row justify-center">
             <div className="relative w-full xl:w-[550px]">
               <input
-                type="text"
+                type="email"
                 className="border-2 border-border-color transition-all delay-500 ease-in-out text-lg focus:outline-active-color placeholder:text-border-color text-text-input rounded-md p-2.5 pl-10 bg-transparent w-full"
                 placeholder="Email or username"
                 {...register('email')}
@@ -78,7 +76,9 @@ export default function Login() {
 
           <div className="flex flex-col gap-4">
             <div className="flex flex-row justify-center">
-              <button type="submit" className="w-full xl:w-[550px] hover:bg-[#547D7D] transition duration-300 ease-in-out delay-300 hover:-translate-y-1 uppercase text-lg bg-active-color text-text-color p-3 rounded-lg font-bold">login</button>
+              <button type="submit" className="w-full xl:w-[550px] hover:bg-[#547D7D] transition duration-300 ease-in-out delay-300 hover:-translate-y-1 uppercase text-lg bg-active-color text-text-color p-3 rounded-lg font-bold">
+                {fetching ? 'loading ...' : 'login'}
+              </button>
             </div>
 
             <div className="flex flex-row justify-start xl:justify-center">

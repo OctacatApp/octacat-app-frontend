@@ -1,9 +1,6 @@
-import { gql } from 'urql';
+import { gql, useMutation } from 'urql';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import useForm from './useForm';
-import { useUrqlClientContext } from '@/context/urqlContext';
-import { awaiter } from '@/utils/helper';
 
 const REGISTER_MUTATION = gql`
   mutation register($name: String!, $email: String!, $password: String!) {
@@ -21,16 +18,13 @@ const REGISTER_MUTATION = gql`
 `;
 
 export default function useRegister() {
-  const navigate = useNavigate();
-  const client = useUrqlClientContext();
-
   const [visible, setVisible] = useState(false);
-  const [mutationResponse, setMutationResponse] = useState();
-  const [mutationResponseError, setMutationResponseError] = useState();
-
   const { formState, register } = useForm({
     email: '', name: '', password: '',
   });
+
+  const [result, mutationRegister] = useMutation(REGISTER_MUTATION);
+  const { fetching, error } = result;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,16 +33,8 @@ export default function useRegister() {
       const {
         name, email, password,
       } = formState;
-
-      const { data, error } = await client.mutation(REGISTER_MUTATION, { name, email, password }).toPromise();
-
-      setMutationResponse(data);
-      setMutationResponseError(error);
-
-      if (mutationResponse != null) {
-        await awaiter(2000);
-        navigate('/');
-      }
+      const handleState = { name, email, password };
+      await mutationRegister(handleState);
     } catch (err) {
       throw new Error(err.message);
     }
@@ -58,9 +44,10 @@ export default function useRegister() {
     formState,
     register,
     handleSubmit,
-    mutationResponseError,
-    mutationResponse,
     setVisible,
     visible,
+    fetching,
+    error,
+    result,
   };
 }
