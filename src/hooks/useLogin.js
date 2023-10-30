@@ -1,9 +1,8 @@
-import { gql } from 'urql';
+import { gql, useMutation } from 'urql';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useForm from './useForm';
-import { useUrqlClientContext } from '@/context/urqlContext';
-import { awaiter } from '@/utils/helper';
+import { awaiter, saveToLocalStorage } from '@/utils/helper';
 
 const LOGIN_MUTATION = gql`
   mutation auth($email: String!, $password: String!) {
@@ -20,27 +19,26 @@ const LOGIN_MUTATION = gql`
 `;
 
 export default function useLogin() {
-  const client = useUrqlClientContext();
-
   const navigate = useNavigate();
-
   const [visible, setVisible] = useState(false);
   const { formState, register } = useForm({ email: '', password: '' });
-  const [mutationResponse, setMutationResponse] = useState();
-  const [mutationResponseError, setMutationResponseError] = useState();
+
+  const [result, mutationLogin] = useMutation(LOGIN_MUTATION);
+  const { fetching, error } = result;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const { email, password } = formState;
-      const { data, error } = await client.mutation(LOGIN_MUTATION, { email, password });
+      const stateHandling = { email, password };
 
-      setMutationResponse(data);
-      setMutationResponseError(error);
+      const response = await mutationLogin(stateHandling);
+      const { data: { auth: { login: { token } } } } = response;
 
-      if (data != null) {
-        await awaiter(2000);
+      if (token !== null) {
+        await awaiter(1000);
+        saveToLocalStorage('token', token);
         navigate('/dashboard');
       }
     } catch (err) {
@@ -54,7 +52,8 @@ export default function useLogin() {
     handleSubmit,
     visible,
     setVisible,
-    mutationResponse,
-    mutationResponseError,
+    fetching,
+    error,
+    result,
   };
 }
