@@ -3,17 +3,17 @@ import { BiSend } from 'react-icons/bi';
 import { FiSearch } from 'react-icons/fi';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
-export default function Chatting() {
+export default function Chatting({ selectedUser }) {
   return (
     <section className="flex flex-col w-full gap-4">
       <div className="flex flex-row items-center justify-between">
         <div className="flex flex-row items-center gap-6">
           <img
-            src="https://www.parenting.co.id/img/images/LELA28_shutterstock_800x400.jpg"
+            src={selectedUser?.profileImage ? selectedUser?.profileImage : 'https://www.parenting.co.id/img/images/LELA28_shutterstock_800x400.jpg'}
             alt="avatar"
             className="object-cover w-16 h-16 rounded-full"
           />
-          <h1 className="m-0 capitalize text-[#747B86] text-lg font-semibold">gorengan ganjil</h1>
+          <h1 className="m-0 capitalize text-[#747B86] text-lg font-semibold">{selectedUser?.name}</h1>
         </div>
 
         <div className="flex flex-row items-center gap-10">

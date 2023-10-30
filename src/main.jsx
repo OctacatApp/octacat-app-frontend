@@ -24,7 +24,7 @@ const client = new Client({
   ],
   fetchOptions: () => {
     const token = getToken();
-    const tokenWithoutQuotes = token.replace(/"/g, '');
+    const tokenWithoutQuotes = token?.replace(/"/g, '');
 
     return {
       headers: { authorization: `Bearer ${tokenWithoutQuotes}` },
