@@ -1,6 +1,7 @@
 import { gql, useMutation } from 'urql';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 import useForm from './useForm';
 import { awaiter, saveToLocalStorage } from '@/utils/helper';
 
@@ -37,11 +38,14 @@ export default function useLogin() {
       const { data: { auth: { login: { token } } } } = response;
 
       if (token !== null) {
+        toast.success('Login Successfully!');
+
         await awaiter(1000);
         saveToLocalStorage('token', token);
-        navigate('/dashboard');
+        navigate('/chat');
       }
     } catch (err) {
+      toast.error('User with this email not registered');
       throw new Error(err);
     }
   };
