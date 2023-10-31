@@ -1,5 +1,6 @@
 import { gql, useMutation } from 'urql';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import useForm from './useForm';
 
 const REGISTER_MUTATION = gql`
@@ -33,8 +34,15 @@ export default function useRegister() {
       const {
         name, email, password,
       } = formState;
+
       const handleState = { name, email, password };
-      await mutationRegister(handleState);
+      const response = await mutationRegister(handleState);
+
+      if (response?.data != null) {
+        toast.success('register berhasil');
+      } else {
+        toast.error('register gagal');
+      }
     } catch (err) {
       throw new Error(err.message);
     }

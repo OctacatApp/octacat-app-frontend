@@ -1,4 +1,4 @@
-import { TbSmartHome, TbSettings2 } from 'react-icons/tb';
+import { TbSettings2 } from 'react-icons/tb';
 import { PiChatTeardropDots } from 'react-icons/pi';
 
 import { lazy } from 'react';
@@ -8,7 +8,7 @@ import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
 import ChangePassword from '@/pages/ChangePassword';
 
-const Dashboard = lazy(() => import('@/pages/Dashboard'));
+// const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const Chat = lazy(() => import('@/pages/Chat'));
 const Setting = lazy(() => import('@/pages/Setting'));
 const Page404 = lazy(() => import('@/pages/Page404'));
@@ -27,9 +27,9 @@ export default function Constant() {
     {
       path: '/change-password', element: <ChangePassword />, requireAuth: false,
     },
-    {
-      path: '/dashboard', element: <Dashboard />, requireAuth: true, icons: <TbSmartHome size={30} />,
-    },
+    // {
+    //   path: '/dashboard', element: <Dashboard />, requireAuth: true, icons: <TbSmartHome size={30} />,
+    // },
     {
       path: '/chat', element: <Chat />, requireAuth: true, icons: <PiChatTeardropDots size={30} />,
     },
