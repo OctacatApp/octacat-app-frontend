@@ -25,7 +25,7 @@ export default function ForgotPassword() {
           </div>
 
           <div className="flex flex-row justify-start">
-            <span className="text-base text-border-color">
+            <span className="text-sm xl:text-base text-border-color">
               I remember the password?
               {' '}
               <Link to="/" className="font-bold text-[#7F265B]">Sign in now</Link>

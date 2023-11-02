@@ -66,7 +66,7 @@ export default function Login() {
           </div>
 
           <div className="flex flex-row justify-start">
-            <span className="text-base text-border-color">
+            <span className="text-sm xl:text-base text-border-color">
               Not Registered Yet?
               {' '}
               <Link to="/register" className="font-bold text-[#7F265B]">Create an account</Link>

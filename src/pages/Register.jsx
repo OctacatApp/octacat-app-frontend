@@ -50,7 +50,7 @@ export default function Register() {
 
             <button
               type="button"
-              className="absolute top-0 flex items-center h-full right-4 xl:right-3"
+              className="absolute flex items-center h-full top-3 right-4 xl:right-3"
               onClick={() => setVisible(!visible)}
             >
               <AiOutlineEye className="text-xl xl:text-2xl text-border-color" />
@@ -70,7 +70,7 @@ export default function Register() {
           </div>
 
           <div className="flex flex-row justify-center">
-            <span className="w-full text-base text-border-color">
+            <span className="w-full text-sm xl:text-base text-border-color">
               Do you have an account?
               {' '}
               <Link to="/" className="font-bold text-[#7F265B]">Sign in now</Link>
