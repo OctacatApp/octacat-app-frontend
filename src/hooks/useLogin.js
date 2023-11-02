@@ -42,7 +42,7 @@ export default function useLogin() {
 
         await awaiter(1000);
         saveToLocalStorage('token', token);
-        navigate('/chat');
+        navigate('/chats');
       }
     } catch (err) {
       toast.error('User with this email not registered');
