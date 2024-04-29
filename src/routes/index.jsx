@@ -1,7 +1,7 @@
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { useEffect } from 'react';
-import Login from '@/pages/login';
+// import Login from '@/pages/login';
 import Register from '@/pages/register';
 import SendEmail from '@/pages/auth/sendEmail';
 import ChangePassword from '@/pages/auth/changePassword';
@@ -31,7 +31,7 @@ export default function Routers() {
 
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      {/* <Route path="/" element={<Login />} /> */}
       <Route path="/auth/sign-up" element={<Register />} />
       <Route path="/auth/send-email" element={<SendEmail />} />
       <Route path="/auth/change-password" element={<ChangePassword />} />
