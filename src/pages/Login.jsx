@@ -20,7 +20,7 @@ export default function Login() {
         toast.success('Sign in Success');
         saveSession('token', token);
 
-        navigate('/');
+        navigate('/chat');
       }
     }).catch((error) => {
       toast.error('Sign in Failed');

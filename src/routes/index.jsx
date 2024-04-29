@@ -23,7 +23,7 @@ export default function Routers() {
 
   return (
     <Routes>
-      <Route path="/" element={<Chat />} />
+      <Route path="/chat" element={<Chat />} />
     </Routes>
   );
 }
