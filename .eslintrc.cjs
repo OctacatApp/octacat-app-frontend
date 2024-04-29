@@ -24,6 +24,7 @@ module.exports = {
     'react/no-array-index-key': 'off',
     'linebreak-style': 'off',
     'max-len': 'off',
+    'react/jsx-no-useless-fragment': 'off',
     'react/prop-types': 'off',
     'import/no-extraneous-dependencies': ['error',
       {

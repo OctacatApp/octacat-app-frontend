@@ -1,40 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {
-  Client, Provider, cacheExchange, fetchExchange,
-} from 'urql';
-
 import { BrowserRouter } from 'react-router-dom';
-import Routers from './router/Index';
 
-import 'aos/dist/aos.css';
-import './assets/styles/index.css';
+import { Provider } from 'urql';
 
-// Providing the client
-const getToken = () => {
-  const token = localStorage.getItem('token');
-  return token;
-};
+import Routers from './routes';
 
-const client = new Client({
-  url: 'https://octacat-app-backend.fly.dev/query',
-  exchanges: [
-    cacheExchange,
-    fetchExchange,
-  ],
-  fetchOptions: () => {
-    const token = getToken();
-    const tokenWithoutQuotes = token?.replace(/"/g, '');
-
-    return {
-      headers: { authorization: `Bearer ${tokenWithoutQuotes}` },
-    };
-  },
-});
+import './styles/index.css';
+import client from './urql/config';
+import ToastContainer from './components/common/toastContainer';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider value={client}>
+      <ToastContainer />
       <BrowserRouter>
         <Routers />
       </BrowserRouter>
