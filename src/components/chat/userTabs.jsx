@@ -1,5 +1,11 @@
 import { HiDotsHorizontal } from 'react-icons/hi';
 
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+
 export default function UserTabs({ users, setSelectUser, selectUser }) {
   return (
     <div className="col-span-2 bg-[#F8F8F8] border-r border-slate-300">
@@ -11,9 +17,17 @@ export default function UserTabs({ users, setSelectUser, selectUser }) {
             className="w-11 h-11"
           />
 
-          <button type="button" aria-label="setting-button">
-            <HiDotsHorizontal className="text-3xl duration-500 text-slate-600 hover:text-green-600" />
-          </button>
+          <Popover>
+            <PopoverTrigger>
+              <HiDotsHorizontal className="text-3xl duration-500 text-slate-600 hover:text-green-600" />
+            </PopoverTrigger>
+            <PopoverContent>
+              <div className="flex flex-col gap-0">
+                <button type="button" className="p-3 text-left capitalize duration-500 hover:bg-slate-900/5">pesan berbintang</button>
+                <button type="button" className="p-3 text-left capitalize duration-500 hover:bg-slate-900/5">Keluar</button>
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
 
         <div className="flex flex-col h-[82vh] gap-0 overflow-y-auto">
