@@ -1,12 +1,14 @@
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { useEffect } from 'react';
+
+import { recoverSession } from '@/utils/session';
+
+import ChangePassword from '@/pages/auth/changePassword';
+import Login from '@/pages/login';
 import Register from '@/pages/register';
 import SendEmail from '@/pages/auth/sendEmail';
-import ChangePassword from '@/pages/auth/changePassword';
-import { recoverSession } from '@/utils/session';
 import Chat from '@/pages/chat';
-import Login from '@/pages/login';
 
 export default function Routers() {
   const user = recoverSession('token');
