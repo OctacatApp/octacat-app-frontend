@@ -9,7 +9,6 @@ import Register from '@/pages/Register';
 import SendEmail from '@/pages/auth/sendEmail';
 import ChangePassword from '@/pages/auth/changePassword';
 import Chat from '@/pages/Chat';
-import Test from '@/pages/Test';
 
 export default function Routers() {
   const user = recoverSession('token');
@@ -35,7 +34,6 @@ export default function Routers() {
   return (
     <Routes>
       <Route path="/chat" element={<Chat />} />
-      <Route path="/test" element={<Test />} />
     </Routes>
   );
 }

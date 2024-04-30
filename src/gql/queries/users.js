@@ -26,4 +26,17 @@ const USERS = gql`
     }
 }`;
 
-export { USERS };
+const ME = gql`
+query userGetByID {
+  user {
+    getByID(id: String!) {
+      id
+      name
+      email
+      profileImage
+    }
+  }
+}
+`;
+
+export { USERS, ME };
