@@ -1,8 +1,8 @@
-function saveSession(key, data) {
-  sessionStorage.setItem(key, data);
+function saveSession(key, payload) {
+  sessionStorage.setItem(key, payload);
 }
 
-function recoverSession(key) {
+function recoverSession(key = '') {
   return sessionStorage.getItem(key);
 }
 

@@ -10,8 +10,8 @@ export default function ToastContainer() {
       containerStyle={{}}
       toastOptions={{
         // Define default options
-        className: 'font-bold',
-        duration: 5000,
+        className: 'font-medium',
+        duration: 3000,
         style: {
           background: '#fff',
           // color: '#000',

@@ -1,7 +1,9 @@
 import { useMutation } from 'urql';
 import toast from 'react-hot-toast';
-import TextInput from '@/components/common/textInput';
+
 import { REGISTER } from '@/gql/mutations/auth';
+
+import RegisterForm from '@/components/registerForm';
 
 export default function Register() {
   const [userRegisterResult, registerMutation] = useMutation(REGISTER);
@@ -21,13 +23,10 @@ export default function Register() {
 
   return (
     <section className="flex items-center justify-center h-[90vh]">
-      <div className="relative shadow-xl shadow-black/5 max-h-[600px] min-h-[600px] max-w-[700px] min-w-[700px]">
-        <TextInput
-          title="Sign up"
-          description="See what is going on with your business"
-          href="/"
-          handlerSubmit={handleSubmit}
+      <div className="relative xl:shadow-xl xl:shadow-black/5 xl:max-h-[600px] xl:min-h-[600px] xl:max-w-[700px] xl:min-w-[700px]">
+        <RegisterForm
           loading={loading}
+          handlerSubmit={handleSubmit}
         />
       </div>
     </section>

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
 import { Provider } from 'urql';
-
 import Routers from './routes';
 
 import './styles/index.css';

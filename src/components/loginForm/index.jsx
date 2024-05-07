@@ -1,31 +1,18 @@
 import { useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-
 import { RiLoader3Line } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
-export default function TextInput({
-  title, description, href, handlerSubmit, loading,
-}) {
+export default function LoginForm({ loading, handlerSubmit }) {
   const formRef = useRef();
-  const { pathname } = useLocation();
 
   const submit = () => {
     const formData = new FormData(formRef.current);
 
-    if (pathname === '/') {
-      handlerSubmit({ email: formData.get('email'), password: formData.get('password') });
-    }
-    if (pathname === '/auth/sign-up') {
-      handlerSubmit({
-        name: formData.get('name'),
-        email: formData.get('email'),
-        password: formData.get('password'),
-      });
-    }
+    handlerSubmit({ email: formData.get('email'), password: formData.get('password') });
   };
 
   return (
-    <div className="flex flex-col gap-5 xl:p-16">
+    <div className="flex flex-col gap-5 p-10 xl:p-16">
       <div className="flex flex-row-reverse items-center justify-between mt-2">
         <img
           src="/public/images/jupiters.svg"
@@ -33,8 +20,8 @@ export default function TextInput({
           className="w-12 h-12 xl:mb-3 animate-bounce"
         />
         <div className="flex flex-col gap-1">
-          <h1 className="m-0 font-bold text-3xl text-[#525252]">{title}</h1>
-          <span className="text-base text-[#525252]">{description}</span>
+          <h1 className="m-0 font-bold text-3xl capitalize text-[#525252]">sign in</h1>
+          <span className="text-base text-[#525252]">See what is going on with your business</span>
         </div>
       </div>
 
@@ -46,19 +33,6 @@ export default function TextInput({
           submit();
         }}
       >
-        {pathname !== '/' && (
-          <label htmlFor="username" className="flex flex-col gap-1">
-            <small className="text-[#828282]">Username</small>
-            <input
-              type="text"
-              id="username"
-              name="name"
-              className="ring-1 rounded-md text-base ring-[#DED2D9] p-2.5 px-3 outline-none bg-transparent focus:ring-[#5A4B54] duration-500"
-              placeholder="username"
-            />
-          </label>
-        )}
-
         <label htmlFor="email" className="flex flex-col gap-1">
           <small className="text-[#828282]">Email</small>
           <input
@@ -83,7 +57,12 @@ export default function TextInput({
 
         <div className="flex flex-row items-center justify-between">
           <label htmlFor="checkbox" className="flex flex-row items-center gap-2">
-            <input type="checkbox" name="checkbox" id="checkbox" className="w-5 h-5 accent-[#7F265B]" />
+            <input
+              id="checkbox"
+              type="checkbox"
+              name="checkbox"
+              className="w-5 h-5 accent-[#7F265B]"
+            />
             <span className="capitalize text-[#A1A1A1]">remember me</span>
           </label>
 
@@ -104,9 +83,9 @@ export default function TextInput({
         </button>
 
         <span className="flex flex-row items-center gap-1.5">
-          {pathname === '/' ? 'Not registered yet?' : 'Do you have an account? '}
-          <Link to={href} className="font-bold text-[#7F265B] hover:text-[#050304] duration-500">
-            {pathname === '/' ? 'Sign up now' : 'Sign in now'}
+          Not registered yet?
+          <Link to="/auth/sign-up" className="font-bold text-[#7F265B] hover:text-[#050304] duration-500">
+            Sign up now
           </Link>
         </span>
       </form>

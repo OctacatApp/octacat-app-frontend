@@ -26,4 +26,17 @@ const USERS = gql`
     }
 }`;
 
-export { USERS };
+const ME = gql`
+query me {
+  user {
+    me {
+      id
+      name
+      email
+      profileImage
+    }
+  }
+}
+`;
+
+export { USERS, ME };

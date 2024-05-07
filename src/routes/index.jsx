@@ -1,27 +1,38 @@
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { useEffect } from 'react';
-import Register from '@/pages/register';
+
+import { useQuery } from 'urql';
+
+import Login from '@/pages/Login';
+import Register from '@/pages/Register';
 import SendEmail from '@/pages/auth/sendEmail';
 import ChangePassword from '@/pages/auth/changePassword';
+import Chat from '@/pages/Chat';
+import { ME } from '@/gql/queries/users';
 import { recoverSession } from '@/utils/session';
-import Chat from '@/pages/chat';
-import Login from '@/pages/login';
 
 export default function Routers() {
-  const user = recoverSession('token');
+  const [result, reexecuteQuery] = useQuery({ query: ME });
+  const user = result?.data?.user?.me;
+  const token = recoverSession('token');
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!user) {
-      navigate('/');
+      navigate('/*');
     }
   }, [user]);
+
+  useEffect(() => {
+    reexecuteQuery();
+  }, [reexecuteQuery, token]);
 
   if (!user) {
     return (
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/*" element={<Login />} />
         <Route path="/auth/sign-up" element={<Register />} />
         <Route path="/auth/send-email" element={<SendEmail />} />
         <Route path="/auth/change-password" element={<ChangePassword />} />
@@ -31,7 +42,7 @@ export default function Routers() {
 
   return (
     <Routes>
-      <Route path="/chat" element={<Chat />} />
+      <Route path="/" element={<Chat />} />
     </Routes>
   );
 }

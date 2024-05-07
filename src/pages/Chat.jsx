@@ -1,6 +1,8 @@
 import { useQuery } from 'urql';
 import { useEffect, useState } from 'react';
+
 import { USERS } from '@/gql/queries/users';
+
 import UserTabs from '@/components/chat/userTabs';
 import UserChat from '@/components/chat/userChat';
 
