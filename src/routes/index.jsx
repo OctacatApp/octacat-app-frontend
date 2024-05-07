@@ -29,6 +29,8 @@ export default function Routers() {
     reexecuteQuery();
   }, [reexecuteQuery, token]);
 
+  // async me & route validation
+
   if (!user) {
     return (
       <Routes>
