@@ -2,9 +2,7 @@ import { useMutation } from 'urql';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-
 import { recoverSession, saveSession } from '@/utils/session';
-
 import { LOGIN } from '@/gql/mutations/auth';
 import LoginForm from '@/components/loginForm';
 
@@ -13,7 +11,7 @@ export default function Login() {
   const { fetching: loading } = authUserResult;
 
   const navigate = useNavigate();
-  const user = recoverSession('token');
+  const tokens = recoverSession('token');
 
   const handleSubmit = ({ email, password }) => {
     const variables = { email, password };
@@ -31,10 +29,10 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (user) {
-      navigate('/chat');
+    if (tokens) {
+      navigate('/');
     }
-  }, [user]);
+  }, [tokens]);
 
   return (
     <section className="flex items-center justify-center h-[90vh]">

@@ -27,9 +27,9 @@ const USERS = gql`
 }`;
 
 const ME = gql`
-query userGetByID {
+query me {
   user {
-    getByID(id: String!) {
+    me {
       id
       name
       email
